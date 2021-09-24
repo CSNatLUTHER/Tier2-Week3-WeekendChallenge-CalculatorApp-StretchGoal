@@ -1,0 +1,24 @@
+{
+  "name": "tier2-week3-weekendchallenge-calculatorapp",
+  "version": "1.0.0",
+  "description": "[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSNatLUTHER/Tier2-Week3-WeekendChallenge-CalculatorApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSNatLUTHER/Tier2-Week3-WeekendChallenge-CalculatorApp/issues"
+  },
+  "homepage": "https://github.com/CSNatLUTHER/Tier2-Week3-WeekendChallenge-CalculatorApp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

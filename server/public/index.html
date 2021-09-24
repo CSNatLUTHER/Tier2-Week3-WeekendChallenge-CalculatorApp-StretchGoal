@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vendors/jquery - 3.6.0 - Production.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Tier2-Week3-WeekendChallenge-CalculatorApp</title>
+</head>
+<body>
+    <h1>Tier2, Week3, Weekend Challenge - Calculator App</h1>
+    <h2>SERVER SIDE CALCULATOR</h2>
+    <div id="calculatorDiv">
+        <input type="number" id="numOneIn">
+        <button data-id="+" class="operationType">+</button>
+        <button data-id="-" class="operationType">-</button>
+        <button data-id="*" class="operationType">*</button>
+        <button data-id="/" class="operationType">/</button>
+        <input type="number" id="numTwoIn">
+        <button id="calculateAnswer">=</button>
+        <button id="clearValues">C</button>
+    </div>
+    <div>
+        <h3>LAST ANSWER:<span id="calcAnswer"></span></h3>
+    </div>
+    <div id="PastCalculationsDiv">
+        <h3>Past Calculations:</h3>
+        <ul id="listOfPastCalculations">
+
+        </ul>
+    </div>
+</body>
+</html>
