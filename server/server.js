@@ -43,5 +43,5 @@ app.post('/calculations', (req, res ) => {
 
 app.delete( '/calculations', (req, res ) => {
     pastCalculations = []
-    res.sendStatus( 201 )
+    res.sendStatus( 200 )
 })

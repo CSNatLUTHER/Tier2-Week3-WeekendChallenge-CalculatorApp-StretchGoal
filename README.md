@@ -85,10 +85,10 @@ Phase 4: SUPER strech Goals
 ===
 
 - clear history of calculations
-    - create a button to clear history
-    - target element and to run clearHistory function
-    - create clearHistory function to make ajax DELETE call to server
-    - create app.delete funciton on server to clear objects in array
+    - create a button to clear history [x]
+    - target element and to run clearHistory function [x]
+    - create clearHistory function to make ajax DELETE call to server [x]
+    - create app.delete funciton on server to clear objects in array [x]
 
 
 

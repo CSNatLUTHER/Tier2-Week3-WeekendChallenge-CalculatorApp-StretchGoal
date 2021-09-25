@@ -1,7 +1,6 @@
 $( document ).ready ( onReady );
 
 function onReady(){
-    console.log( 'I am JQuery ready!' );
     $( '#calculateAnswer' ).on ( 'click', performCalculation );
     $( '#clearValues' ).on ( 'click', clearData );
     $( '.operationType' ).on ( 'click', setOperation );
@@ -30,19 +29,20 @@ function clearData(){
     $( ".operationType" ).removeAttr('style') 
 } // end clearData function
 
-function clearHistory(){
-    console.log("in clearHistory");
-    $.ajax({
-        method: 'DELETE',
-        url: '/calculations'
-    }).then( function (response){
-        console.log( 'back from DELETE with:', response )
-        getPastCalculations();
-    }).catch( function( err ){
-        alert( 'There was an error. See console for details')
-        console.log('DELETE error', err );
-    })
-}
+function clearHistory(){  
+    if (confirm('Are you sure you want to delete all history? This cannot be undone.', true ) ){
+        $.ajax({
+            method: 'DELETE',
+            url: '/calculations'
+        }).then( function (response){
+            console.log( 'back from DELETE with:', response )
+            getPastCalculations();
+        }).catch( function( err ){
+            alert( 'There was an error. See console for details')
+            console.log('DELETE error', err );
+        })
+    } // end if
+} // end clearHistory funciton
 
 function getPastCalculations(){
     $.ajax({
@@ -63,12 +63,10 @@ function getPastCalculations(){
             }; // end for loop
             let la = $( '#calcAnswer');
             la.empty()
-            console.log(la);
             $( '#calcAnswer' ).append(` ${response[0].numOne} 
             ${response[0].operation} 
             ${response[0].numTwo} = 
             <b>${response[0].answer}</b>`)
-            console.log(la);
             let el2 = $('#entryField')
             el2.append(response[0].answer)
             lastAnswer = response[0].answer
@@ -144,7 +142,6 @@ function performCalculation(){
         console.log( 'back from POST', response );
         equalsButtonLastClick = true;
         la.empty();
-        console.log(la);
         getPastCalculations();
     }).catch( function ( err ) {
         alert( 'There was a caluation error')
