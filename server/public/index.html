@@ -22,14 +22,56 @@
         <button id="calculateAnswer">=</button>
         <button id="clearValues">C</button>
     </div>
-    <div>
-        <h3>LAST ANSWER:<span id="calcAnswer"></span></h3>
-    </div>
-    <div id="PastCalculationsDiv">
-        <h3>Past Calculations:</h3>
-        <ul id="listOfPastCalculations">
-
-        </ul>
-    </div>
+    <br>
+    <table id="mainTable" width="600px">
+        <tr>
+            <td> 
+                <div>
+                    <table width="240px" height="360px" id="calcTable">
+                        <tr>
+                            <td colspan="4" id="lastCalculation"><h5><span id="calcAnswer"></span></h5></td> 
+                        </tr>
+                        <tr>
+                            <td><input type="button" id="clearButton" value="C"></td>
+                            <td colspan="3" id="entryField"></td> 
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="clacButton" value="7"></td>
+                            <td><input type="button" class="clacButton" value="8"></td> 
+                            <td><input type="button" class="clacButton" value="9"></td>
+                            <td><input type="button" class="clacButton" value="*"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="clacButton" value="4"></td>
+                            <td><input type="button" class="clacButton" value="5"></td> 
+                            <td><input type="button" class="clacButton" value="6"></td>
+                            <td><input type="button" class="clacButton" value="-"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="clacButton" value="1"></td>
+                            <td><input type="button" class="clacButton" value="2"></td> 
+                            <td><input type="button" class="clacButton" value="3"></td>
+                            <td><input type="button" class="clacButton" value="+"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" class="clacButton" value="."></td>
+                            <td><input type="button" class="clacButton" value="0"></td> 
+                            <td><input type="button" class="clacButton" value="="></td>
+                            <td><input type="button" class="clacButton" value="/"></td>
+                        </tr>
+                    </table>
+                </div>
+            </td> 
+            <td style="display:block;position:relative;top:2px;">
+                <div id="PastCalculationsDiv">
+                    <h3>Past Calculations:</h3>
+                    <ul id="listOfPastCalculations">
+            
+                    </ul>
+                </div>
+            </td>
+        </tr>
 </body>
 </html>
+
+

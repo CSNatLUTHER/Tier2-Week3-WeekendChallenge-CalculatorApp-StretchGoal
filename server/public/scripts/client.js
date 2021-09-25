@@ -27,7 +27,7 @@ function getPastCalculations(){
         el.empty()
         if (response.length > 0){
             for (let i = 0; i < response.length; i++) {
-                el.append(`<li>${response[i].numOne} 
+                el.append(`<li style="font-size: 16px">${response[i].numOne} 
                 ${response[i].operation} 
                 ${response[i].numTwo} = 
                 <b>${response[i].answer}</b></li>`) 

@@ -1,3 +1,50 @@
 body{
     background-color: azure;
 }
+#mainTable{
+    border:2px solid rgb(120, 114, 114);
+    border-radius: 5px;
+    background-color: rgb(179, 173, 173);
+    color: rgb(62, 59, 59);
+}
+
+#calcTable {
+    border:2px solid rgb(75, 72, 72);
+    border-radius: 5px;
+    background-color: rgb(145, 140, 140);
+  }
+
+.clacButton{
+      width: 60px;
+      height: 80px;
+      font-size: 24px;
+      border-radius: 5px;
+  }
+
+  
+#entryField{
+    width: 182px;
+    height: 40px;
+    font-size: 20px;
+    border:1px solid rgb(75, 72, 72);
+    border-radius: 5px;
+    background-color: rgb(244, 239, 239);
+}
+
+#clearButton{
+    width: 60px;
+    height: 45px;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+#lastCalculation{
+    width: 245px;
+    height: 40px;
+    font-size: 18px;
+    color: rgb(233, 227, 227);
+    border:1px solid rgb(121, 118, 118);
+    border-radius: 5px;
+    background-color: rgb(145, 140, 140);
+    text-align: center;
+}

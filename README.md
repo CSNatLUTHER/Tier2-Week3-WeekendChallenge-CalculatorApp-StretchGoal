@@ -52,14 +52,25 @@ Phase 1:
 Phase 2:
 ===
 
-- create setOperation funciton to capture operation and update button css
+- create setOperation funciton to capture operation and update button css [x]
 - create performCalculation function to capture inputs and send in object to server via Ajax [x]
 - great app.put function on server.js to:
-    - perform calculation
-    - push calculation and answer into pastCalculations array
-- update the getPastCalculations
-- create clearData funciton to empty inputs and reset global variables
-- clear the inputs and reset global variables
+    - perform calculation [x]
+    - push calculation and answer into pastCalculations array [x]
+- update the getPastCalculations [x]
+- create clearData funciton to empty inputs and reset global variables [x]
+- clear the inputs and reset global variables [x]
+- add error handling for operations and input values [x]
+
+Phase 3: Stretch Goals
+===
+
+- create html layout and style to create look and feel of calculator
+    - table to hold buttons for numeric digits, operators and clear (and all clear?) button [x]
+    - long row in table to show active calculation inputs and display answer [x]
+    - long row in table to show progress of calculation [x]
+    - a styled repository to show past calculations [x]
+
 
 
 
