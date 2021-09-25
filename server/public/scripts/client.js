@@ -5,7 +5,8 @@ function onReady(){
     $( '#calculateAnswer' ).on ( 'click', performCalculation );
     $( '#clearValues' ).on ( 'click', clearData );
     $( '.operationType' ).on ( 'click', setOperation );
-    $( '.clacButton').on ( 'click', insertNumber )
+    $( '.clacButton').on ( 'click', insertNumber );
+    $( '#clearHistory' ).on ( 'click', clearHistory );
     getPastCalculations();
 }
 
@@ -27,6 +28,20 @@ function clearData(){
     el.empty()
     la.empty()
     $( ".operationType" ).removeAttr('style') 
+} // end clearData function
+
+function clearHistory(){
+    console.log("in clearHistory");
+    $.ajax({
+        method: 'DELETE',
+        url: '/calculations'
+    }).then( function (response){
+        console.log( 'back from DELETE with:', response )
+        getPastCalculations();
+    }).catch( function( err ){
+        alert( 'There was an error. See console for details')
+        console.log('DELETE error', err );
+    })
 }
 
 function getPastCalculations(){
@@ -65,6 +80,49 @@ function getPastCalculations(){
     })
 } // end getPastCalculations function
 
+function insertNumber() {
+    let el = $('#entryField')
+    let la = $('#lastCalculation')
+    let ti = $('#calcAnswer')
+    console.log('Last Cal Display:', la[0].innerText);
+    console.log('lastCalculation:', lastCalculation);
+    let el2 = el[0].innerText
+    let dotCounter = 0;
+    let nextNum = $(this).val();
+    if (la[0].innerText == lastCalculation){
+        ti.empty();
+    }
+    for (let i = 0; i < el2.length; i++) {
+        if(el2[i] === '.') {
+            dotCounter++
+        } // end if
+    } // end for
+    console.log(dotCounter);
+    if(el2 == lastAnswer && equalsButtonLastClick === true){
+        el.empty()
+        ti.empty()
+        equalsButtonLastClick = false
+        if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
+            el.append(nextNum)
+            ti.append(nextNum)
+        } // end if
+        else if($( this ).data( 'id' ) != '.'){
+            el.append(nextNum)
+            ti.append(nextNum)
+        } // end if
+    }
+    else{
+        if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
+            el.append(nextNum)
+            ti.append(nextNum)
+        } // end if
+        else if($( this ).data( 'id' ) != '.'){
+            el.append(nextNum)
+            ti.append(nextNum)
+        } // end if
+    }
+} // end insertNumber function
+
 function performCalculation(){
     let el = $('#entryField')
     let la = $('#calcAnswer')
@@ -83,7 +141,7 @@ function performCalculation(){
         url: '/calculations',
         data: newObjectToSend
     }).then( function (response ) {
-        console.log( 'back from POST', newObjectToSend );
+        console.log( 'back from POST', response );
         equalsButtonLastClick = true;
         la.empty();
         console.log(la);
@@ -94,7 +152,7 @@ function performCalculation(){
     })
     clearData();
     } // end else
-}
+} // end performCalculation funciton
 
 function setOperation() {
     let el = $('#entryField')
@@ -138,45 +196,3 @@ function setOperation() {
     
 } // end setOperation
 
-function insertNumber() {
-    let el = $('#entryField')
-    let la = $('#lastCalculation')
-    let ti = $('#calcAnswer')
-    console.log('Last Cal Display:', la[0].innerText);
-    console.log('lastCalculation:', lastCalculation);
-    let el2 = el[0].innerText
-    let dotCounter = 0;
-    let nextNum = $(this).val();
-    if (la[0].innerText == lastCalculation){
-        ti.empty();
-    }
-    for (let i = 0; i < el2.length; i++) {
-        if(el2[i] === '.') {
-            dotCounter++
-        } // end if
-    } // end for
-    console.log(dotCounter);
-    if(el2 == lastAnswer && equalsButtonLastClick === true){
-        el.empty()
-        ti.empty()
-        equalsButtonLastClick = false
-        if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
-            el.append(nextNum)
-            ti.append(nextNum)
-        } // end if
-        else if($( this ).data( 'id' ) != '.'){
-            el.append(nextNum)
-            ti.append(nextNum)
-        } // end if
-    }
-    else{
-        if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
-            el.append(nextNum)
-            ti.append(nextNum)
-        } // end if
-        else if($( this ).data( 'id' ) != '.'){
-            el.append(nextNum)
-            ti.append(nextNum)
-        } // end if
-    }
-} // insertNumber function

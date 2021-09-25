@@ -40,3 +40,8 @@ app.post('/calculations', (req, res ) => {
     pastCalculations.unshift(el)
     res.sendStatus( 201 )
    });
+
+app.delete( '/calculations', (req, res ) => {
+    pastCalculations = []
+    res.sendStatus( 201 )
+})
