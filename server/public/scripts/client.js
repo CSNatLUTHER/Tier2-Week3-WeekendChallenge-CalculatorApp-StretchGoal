@@ -5,17 +5,25 @@ function onReady(){
     $( '#calculateAnswer' ).on ( 'click', performCalculation );
     $( '#clearValues' ).on ( 'click', clearData );
     $( '.operationType' ).on ( 'click', setOperation );
+    $( '.clacButton').on ( 'click', insertNumber )
     getPastCalculations();
 }
 
-let operationType = '';
+let newObjectToSend = {
+    numOne: '',
+    operation: '',
+    numTwo: ''
+    }
 
 function clearData(){
-    $( "#numOneIn" ).val('')
-    $( "#numTwoIn" ).val('')
-    $( ".operationType" ).removeAttr('style')
+    newObjectToSend.numOne = '';
+    newObjectToSend.numTwo = '';
     operationType = '';
+    let el = $('#entryField')
+    el.empty()
+    $( ".operationType" ).removeAttr('style') 
 }
+
 function getPastCalculations(){
     console.log('in getPastCalculations');
     $.ajax({
@@ -37,6 +45,8 @@ function getPastCalculations(){
             ${response[0].operation} 
             ${response[0].numTwo} = 
             <b>${response[0].answer}</b>`)
+            let el2 = $('#entryField')
+            el2.append(response[0].answer)
         }  // end if  
     }).catch( function( err ){
         alert('There was an error');
@@ -46,25 +56,26 @@ function getPastCalculations(){
 
 function performCalculation(){
     console.log( 'in performCalculation' );
-    console.log($( "#numOneIn" ).val().length);
-    if ($( "#numOneIn" ).val().length <1 || 
-        operationType === '' || 
-        $( "#numTwoIn" ).val().length <1){
+    let el = $('#entryField')
+    if (newObjectToSend.numOne.length > 0 && el[0].innerText.length > 0) {
+        newObjectToSend.numTwo = el[0].innerText
+        el.empty();
+    }
+    console.log(newObjectToSend.numOne,
+                newObjectToSend.operation,
+                newObjectToSend.numTwo);
+    if (newObjectToSend.numOne.length < 1 || 
+        newObjectToSend.operation === '' || 
+        newObjectToSend.numTwo.length < 1){
             alert( "Two numbers and an operator must be selected to continue")
     } // end if
     else{
-    let objectToSend = {
-        numOne: $( "#numOneIn" ).val(),
-        operation: operationType,
-        numTwo: $( "#numTwoIn" ).val(),
-    }
-    console.log( objectToSend );
     $.ajax({
         method: 'POST',
         url: '/calculations',
-        data: objectToSend
+        data: newObjectToSend
     }).then( function (response ) {
-        console.log( 'back from POST', objectToSend );
+        console.log( 'back from POST', newObjectToSend );
         getPastCalculations();
     }).catch( function ( err ) {
         alert( 'There was a caluation error')
@@ -76,9 +87,44 @@ function performCalculation(){
 
 function setOperation() {
     console.log( 'in setOperation with operation type:', $( this ).data( 'id' ) );
-    operationType = $( this ).data( 'id' )
+    newObjectToSend.operation = $( this ).data( 'id' )
     $( '.operationType').removeAttr('style');
-    $( this ).css ('background-color', 'blue');
+    $( this ).css ('background-color', 'rgb(111, 125, 164)');
     $( this ).css ('color', 'white');
-    console.log('operation is set to:', operationType );
+    let el = $('#entryField')
+    if (newObjectToSend.numOne === '') {
+        newObjectToSend.numOne = el[0].innerText
+        el.empty();
+    }
+    console.log(newObjectToSend.numOne,
+                newObjectToSend.operation,
+                newObjectToSend.numTwo);
 } // end setOperation
+
+function insertNumber() {
+    let el = $('#entryField')
+    let el2 = el[0].innerText
+    console.log(el2);
+    let dotCounter = 0;
+    // loop through el.innertext to count '.' looking for <= 1
+    for (let i = 0; i < el2.length; i++) {
+        if(el2[i] === '.') {
+            dotCounter++
+        } // end if
+    } // end for
+    console.log(dotCounter);
+    if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
+        let nextNum = $(this).val();
+        console.log( nextNum );
+        el.append(nextNum)
+        el2 = el[0].innerText
+        console.log(el2);
+    } // end if
+    else if($( this ).data( 'id' ) != '.'){
+        let nextNum = $(this).val();
+        console.log( nextNum );
+        el.append(nextNum)
+        el2 = el[0].innerText
+        console.log(el2);
+    } // end if
+} // insertNumber function

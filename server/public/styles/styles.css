@@ -1,7 +1,8 @@
 body{
-    background-color: azure;
+    background-color: rgb(209, 215, 215);
 }
 #mainTable{
+    width:500px;
     border:2px solid rgb(120, 114, 114);
     border-radius: 5px;
     background-color: rgb(179, 173, 173);
@@ -9,6 +10,8 @@ body{
 }
 
 #calcTable {
+    width:240px; 
+    height:360px;
     border:2px solid rgb(75, 72, 72);
     border-radius: 5px;
     background-color: rgb(145, 140, 140);
@@ -19,8 +22,16 @@ body{
       height: 80px;
       font-size: 24px;
       border-radius: 5px;
+      background-color: rgb(223, 217, 217);
   }
 
+.operationType{
+    width: 60px;
+      height: 80px;
+      font-size: 24px;
+      border-radius: 5px;
+      background-color: rgb(223, 217, 217); 
+}
   
 #entryField{
     width: 182px;
@@ -29,22 +40,33 @@ body{
     border:1px solid rgb(75, 72, 72);
     border-radius: 5px;
     background-color: rgb(244, 239, 239);
+    text-align: right;
+    padding-right: 8px;
 }
 
-#clearButton{
+#clearValues{
     width: 60px;
     height: 45px;
     font-size: 24px;
     border-radius: 5px;
+    background-color: rgb(223, 217, 217);
 }
 
 #lastCalculation{
     width: 245px;
-    height: 40px;
+    height: 25px;
     font-size: 18px;
     color: rgb(233, 227, 227);
     border:1px solid rgb(121, 118, 118);
     border-radius: 5px;
     background-color: rgb(145, 140, 140);
     text-align: center;
+}
+
+#calculateAnswer{
+    width: 60px;
+    height: 80px;
+    font-size: 24px;
+    border-radius: 5px;
+    background-color: rgb(223, 217, 217);
 }

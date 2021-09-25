@@ -12,52 +12,42 @@
 <body>
     <h1>Tier2, Week3, Weekend Challenge - Calculator App</h1>
     <h2>SERVER SIDE CALCULATOR</h2>
-    <div id="calculatorDiv">
-        <input type="number" id="numOneIn">
-        <button data-id="+" class="operationType">+</button>
-        <button data-id="-" class="operationType">-</button>
-        <button data-id="*" class="operationType">*</button>
-        <button data-id="/" class="operationType">/</button>
-        <input type="number" id="numTwoIn">
-        <button id="calculateAnswer">=</button>
-        <button id="clearValues">C</button>
-    </div>
     <br>
-    <table id="mainTable" width="600px">
+    <table id="mainTable">
         <tr>
             <td> 
                 <div>
-                    <table width="240px" height="360px" id="calcTable">
+                    <table id="calcTable">
                         <tr>
-                            <td colspan="4" id="lastCalculation"><h5><span id="calcAnswer"></span></h5></td> 
+                            <td colspan="4" id="lastCalculation"><span id="calcAnswer"></span></td> 
                         </tr>
                         <tr>
-                            <td><input type="button" id="clearButton" value="C"></td>
-                            <td colspan="3" id="entryField"></td> 
+                            <td><input type="button" id="clearValues" value="C"></td>
+                            <td colspan="3" type="number" id="entryField"></td> 
                         </tr>
                         <tr>
                             <td><input type="button" class="clacButton" value="7"></td>
                             <td><input type="button" class="clacButton" value="8"></td> 
                             <td><input type="button" class="clacButton" value="9"></td>
-                            <td><input type="button" class="clacButton" value="*"></td>
+                            <td><input type="button" data-id="*" class="operationType" value="*"></td>
                         </tr>
                         <tr>
                             <td><input type="button" class="clacButton" value="4"></td>
                             <td><input type="button" class="clacButton" value="5"></td> 
                             <td><input type="button" class="clacButton" value="6"></td>
-                            <td><input type="button" class="clacButton" value="-"></td>
+                            <td><input type="button" data-id="-" class="operationType" value="-"></td>
                         </tr>
                         <tr>
                             <td><input type="button" class="clacButton" value="1"></td>
                             <td><input type="button" class="clacButton" value="2"></td> 
                             <td><input type="button" class="clacButton" value="3"></td>
-                            <td><input type="button" class="clacButton" value="+"></td>
+                            <td><input type="button" data-id="+" class="operationType" value="+"></td>
                         </tr>
                         <tr>
-                            <td><input type="button" class="clacButton" value="."></td>
+                            <td><input type="button" data-id="." class="clacButton" value="."></td>
                             <td><input type="button" class="clacButton" value="0"></td> 
-                            <td><input type="button" class="clacButton" value="="></td>
-                            <td><input type="button" class="clacButton" value="/"></td>
+                            <td><input type="button" id="calculateAnswer" value="="></td>
+                            <td><input type="button" data-id="/" class="operationType" value="/"></td>
                         </tr>
                     </table>
                 </div>

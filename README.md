@@ -70,7 +70,12 @@ Phase 3: Stretch Goals
     - long row in table to show active calculation inputs and display answer [x]
     - long row in table to show progress of calculation [x]
     - a styled repository to show past calculations [x]
-
+- move operation button funcitons to new calculator layout [x]
+- move clear button to calculator layout [x]
+- move calculate (equals) button to calculator layout [x]
+- target number buttons and make them populate the display in the #entryField <td> 
+    - populate first number and then capture in object at time of operation selection [x]
+    - populate second number and then capture in object at time of calculation [x]
 
 
 
