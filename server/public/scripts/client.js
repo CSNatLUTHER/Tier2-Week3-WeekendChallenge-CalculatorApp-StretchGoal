@@ -57,7 +57,7 @@ function getPastCalculations(){
             let el2 = $('#entryField')
             el2.append(response[0].answer)
             lastAnswer = response[0].answer
-            lastCalculation = (` ${response[0].numOne} ${response[0].operation} ${response[0].numTwo} = ${response[0].answer}`)
+            lastCalculation = (`${response[0].numOne} ${response[0].operation} ${response[0].numTwo} = ${response[0].answer}`)
         }  // end if  
     }).catch( function( err ){
         alert('There was an error');
@@ -97,15 +97,45 @@ function performCalculation(){
 }
 
 function setOperation() {
-    newObjectToSend.operation = $( this ).data( 'id' )
-    $( '.operationType').removeAttr('style');
-    $( this ).css ('background-color', 'rgb(111, 125, 164)');
-    $( this ).css ('color', 'white');
     let el = $('#entryField')
+    let la = $('#calcAnswer')
+    let ti = $('#lastCalculation')
+    if (la[0].innerText === lastCalculation){
+        console.log('innerText and lastCalculation Match');
+    }
+    else{
+        for (let i = 0; i < la[0].innerText.length - 1; i++) {
+            if (la[0].innerText[i] === '+' ||
+                la[0].innerText[i] === '-' ||
+                la[0].innerText[i] === '*' ||
+                la[0].innerText[i] === '/' ){
+                    alert( 'Only one operation per calculation allowed')
+                    return;
+            }  // end if (looking for operation characters)  
+        } // end for loop
+    } // end if "inner text check"
+    
+    newObjectToSend.operation = $( this ).data( 'id' )
+    
     if (newObjectToSend.numOne === '') {
         newObjectToSend.numOne = el[0].innerText
         el.empty();
     }
+    $( '.operationType').removeAttr('style');
+    $( this ).css ('background-color', 'rgb(111, 125, 164)');
+    $( this ).css ('color', 'white');
+    if(la[0].innerText[la[0].innerText.length-1] === '+' ||
+        la[0].innerText[la[0].innerText.length-1] === '-' ||
+        la[0].innerText[la[0].innerText.length-1] === '*'||
+        la[0].innerText[la[0].innerText.length-1] === '/'){
+            la.empty()
+            la.append(newObjectToSend.numOne)
+            la.append(' ' + $( this ).data( 'id' ) + ' ')  
+    }
+    else{
+        la.append(' ' + $( this ).data( 'id' ) + ' ')
+    }
+    
 } // end setOperation
 
 function insertNumber() {

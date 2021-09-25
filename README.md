@@ -76,8 +76,10 @@ Phase 3: Stretch Goals
 - target number buttons and make them populate the display in the #entryField <td> 
     - populate first number and then capture in object at time of operation selection [x]
         - clear #entryField when operation is selected [x]
-        - update 'LastAnswer' with first number and operation
-    - populate second number and then capture in object at time of calculation [x]
+        - update 'calcAnswer' with first number when starting a new calculation[x]
+        - update 'calcAnswer' with operation when selected [x]
+        - check for past operations and only allow one if a calculation
+    - populate second number and then capture in object as numTwo when '=' is pressed [x]
 
 
 
