@@ -75,6 +75,8 @@ Phase 3: Stretch Goals
 - move calculate (equals) button to calculator layout [x]
 - target number buttons and make them populate the display in the #entryField <td> 
     - populate first number and then capture in object at time of operation selection [x]
+        - clear #entryField when operation is selected [x]
+        - update 'LastAnswer' with first number and operation
     - populate second number and then capture in object at time of calculation [x]
 
 

@@ -70,3 +70,7 @@ body{
     border-radius: 5px;
     background-color: rgb(223, 217, 217);
 }
+
+#pastCaluculations{
+    display:block;
+}

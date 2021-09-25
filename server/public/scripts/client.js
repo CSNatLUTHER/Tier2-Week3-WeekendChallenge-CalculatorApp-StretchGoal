@@ -14,6 +14,8 @@ let newObjectToSend = {
     operation: '',
     numTwo: ''
     }
+let equalsButtonLastClick = false;
+let lastAnswer = 0;
 
 function clearData(){
     newObjectToSend.numOne = '';
@@ -25,7 +27,6 @@ function clearData(){
 }
 
 function getPastCalculations(){
-    console.log('in getPastCalculations');
     $.ajax({
         method: 'GET',
         url: '/calculations'
@@ -35,10 +36,12 @@ function getPastCalculations(){
         el.empty()
         if (response.length > 0){
             for (let i = 0; i < response.length; i++) {
-                el.append(`<li style="font-size: 16px">${response[i].numOne} 
-                ${response[i].operation} 
-                ${response[i].numTwo} = 
-                <b>${response[i].answer}</b></li>`) 
+                if( i<=10){
+                    el.append(`<li style="font-size: 16px">${response[i].numOne} 
+                    ${response[i].operation} 
+                    ${response[i].numTwo} = 
+                    <b>${response[i].answer}</b></li>`)
+                }
             }; // end for loop
             $( '#calcAnswer' ).empty()
             $( '#calcAnswer' ).append(` ${response[0].numOne} 
@@ -47,6 +50,7 @@ function getPastCalculations(){
             <b>${response[0].answer}</b>`)
             let el2 = $('#entryField')
             el2.append(response[0].answer)
+            lastAnswer = response[0].answer
         }  // end if  
     }).catch( function( err ){
         alert('There was an error');
@@ -55,15 +59,11 @@ function getPastCalculations(){
 } // end getPastCalculations function
 
 function performCalculation(){
-    console.log( 'in performCalculation' );
     let el = $('#entryField')
     if (newObjectToSend.numOne.length > 0 && el[0].innerText.length > 0) {
         newObjectToSend.numTwo = el[0].innerText
         el.empty();
     }
-    console.log(newObjectToSend.numOne,
-                newObjectToSend.operation,
-                newObjectToSend.numTwo);
     if (newObjectToSend.numOne.length < 1 || 
         newObjectToSend.operation === '' || 
         newObjectToSend.numTwo.length < 1){
@@ -76,6 +76,7 @@ function performCalculation(){
         data: newObjectToSend
     }).then( function (response ) {
         console.log( 'back from POST', newObjectToSend );
+        equalsButtonLastClick = true;
         getPastCalculations();
     }).catch( function ( err ) {
         alert( 'There was a caluation error')
@@ -86,7 +87,6 @@ function performCalculation(){
 }
 
 function setOperation() {
-    console.log( 'in setOperation with operation type:', $( this ).data( 'id' ) );
     newObjectToSend.operation = $( this ).data( 'id' )
     $( '.operationType').removeAttr('style');
     $( this ).css ('background-color', 'rgb(111, 125, 164)');
@@ -96,35 +96,38 @@ function setOperation() {
         newObjectToSend.numOne = el[0].innerText
         el.empty();
     }
-    console.log(newObjectToSend.numOne,
-                newObjectToSend.operation,
-                newObjectToSend.numTwo);
 } // end setOperation
 
 function insertNumber() {
     let el = $('#entryField')
     let el2 = el[0].innerText
-    console.log(el2);
     let dotCounter = 0;
-    // loop through el.innertext to count '.' looking for <= 1
     for (let i = 0; i < el2.length; i++) {
         if(el2[i] === '.') {
             dotCounter++
         } // end if
     } // end for
     console.log(dotCounter);
-    if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
-        let nextNum = $(this).val();
-        console.log( nextNum );
-        el.append(nextNum)
-        el2 = el[0].innerText
-        console.log(el2);
-    } // end if
-    else if($( this ).data( 'id' ) != '.'){
-        let nextNum = $(this).val();
-        console.log( nextNum );
-        el.append(nextNum)
-        el2 = el[0].innerText
-        console.log(el2);
-    } // end if
+    if(el2 == lastAnswer && equalsButtonLastClick === true){
+        el.empty()
+        equalsButtonLastClick = false
+        if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
+            let nextNum = $(this).val();
+            el.append(nextNum)
+        } // end if
+        else if($( this ).data( 'id' ) != '.'){
+            let nextNum = $(this).val();
+            el.append(nextNum)
+        } // end if
+    }
+    else{
+        if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
+            let nextNum = $(this).val();
+            el.append(nextNum)
+        } // end if
+        else if($( this ).data( 'id' ) != '.'){
+            let nextNum = $(this).val();
+            el.append(nextNum)
+        } // end if
+    }
 } // insertNumber function
