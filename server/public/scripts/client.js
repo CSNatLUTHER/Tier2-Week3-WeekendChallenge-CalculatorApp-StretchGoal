@@ -6,6 +6,7 @@ function onReady(){
     $( '.operationType' ).on ( 'click', setOperation );
     $( '.clacButton').on ( 'click', insertNumber );
     $( '#clearHistory' ).on ( 'click', clearHistory );
+    $( '#listOfPastCalculations' ).on( 'click', '.calcResponses', rerunCalculation )
     getPastCalculations();
 }
 
@@ -52,15 +53,18 @@ function getPastCalculations(){
         console.log('Back from server with:', response );
         let el = $("#listOfPastCalculations")
         el.empty()
+        let calcCounter = 0;
         if (response.length > 0){
             for (let i = 0; i < response.length; i++) {
                 if( i<=10){
-                    el.append(`<li style="font-size: 16px">${response[i].numOne} 
+                    el.append(`<li style="font-size: 16px" data-id="${calcCounter}" class="calcResponses"><u>${response[i].numOne} 
                     ${response[i].operation} 
                     ${response[i].numTwo} = 
-                    <b>${response[i].answer}</b></li>`)
+                    <b>${response[i].answer}</b></u></li>`)
+                    calcCounter++
                 }
             }; // end for loop
+            console.log('calcCounter:', calcCounter);
             let la = $( '#calcAnswer');
             la.empty()
             $( '#calcAnswer' ).append(` ${response[0].numOne} 
@@ -151,6 +155,22 @@ function performCalculation(){
     } // end else
 } // end performCalculation funciton
 
+function rerunCalculation(){
+    let el = {id:$( this ).data( 'id' )}
+    $.ajax({
+        method: 'GET',
+        url: '/rerunCalculations',
+        data: el
+    }).then( function (response ){
+        let la = $('#entryField')
+        la.empty();
+        getPastCalculations();
+    }).catch( function (err ){
+        alert( 'There was an error. See console for details' )
+        console.log( 'There was a rereunCalculation error:', err );
+    })
+}
+
 function setOperation() {
     let el = $('#entryField')
     let la = $('#calcAnswer')
@@ -171,7 +191,7 @@ function setOperation() {
     } // end if "inner text check"
     
     newObjectToSend.operation = $( this ).data( 'id' )
-    
+    console.log($( this ).data())
     if (newObjectToSend.numOne === '') {
         newObjectToSend.numOne = el[0].innerText
         el.empty();

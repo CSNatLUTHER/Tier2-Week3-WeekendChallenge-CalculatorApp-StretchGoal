@@ -26,16 +26,20 @@ app.post('/calculations', (req, res ) => {
     console.log( 'hit on POST /calculations:', req.body );
     let el = req.body
     if(el.operation === '+'){
-        el.answer = Number(el.numOne) + Number(el.numTwo)
+        let la = Number(el.numOne) + Number(el.numTwo)
+        el.answer = Math.round(la*100000000)/100000000
     }
     else if(el.operation === '-'){
-        el.answer = Number(el.numOne) - Number(el.numTwo)
+        let la = Number(el.numOne) - Number(el.numTwo)
+        el.answer = Math.round(la*100000000)/100000000
     }
     else if(el.operation === '*'){
-        el.answer = Number(el.numOne) * Number(el.numTwo)
+        let la = Number(el.numOne) * Number(el.numTwo)
+        el.answer = Math.round(la*100000000)/100000000
     }
     else if(el.operation === '/'){
-        el.answer = Number(el.numOne) / Number(el.numTwo)
+        let la = Number(el.numOne) / Number(el.numTwo)
+        el.answer = Math.round(la*100000000)/100000000
     }
     pastCalculations.unshift(el)
     res.sendStatus( 201 )
@@ -44,4 +48,12 @@ app.post('/calculations', (req, res ) => {
 app.delete( '/calculations', (req, res ) => {
     pastCalculations = []
     res.sendStatus( 200 )
+})
+
+app.get( '/rerunCalculations', (req, res ) => {
+    console.log( 'Here is what we got:',req.query.id );
+    let el = req.query.id
+    pastCalculations.unshift(pastCalculations[el])
+    res.send( pastCalculations[el] );
+
 })

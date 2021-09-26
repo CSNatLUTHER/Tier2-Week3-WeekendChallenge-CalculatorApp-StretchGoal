@@ -83,3 +83,7 @@ body{
     border-radius: 5px;
     background-color: rgb(109, 149, 174); 
 }
+
+.calcResponses{
+    cursor: pointer; 
+}
