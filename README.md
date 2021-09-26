@@ -99,7 +99,7 @@ Phase 4: SUPER strech Goals
 - create a 'clear' vs. 'clearAll' on calculator
     - update calculator to start with an "AC" (all clear) button [x]
     - after operation is slected, set AC to C which will only remove progress of the active number [x]
-    - after "C" (clear) is selected, return back to AC button and run clearData function
+    - after "C" (clear) is selected, return back to AC button and run clearData function [x]
 
 
 
