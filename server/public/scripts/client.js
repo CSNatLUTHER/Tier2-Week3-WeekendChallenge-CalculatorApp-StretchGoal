@@ -20,14 +20,27 @@ let lastAnswer = 0;
 let lastCalculation = '';
 
 function clearData(){
-    newObjectToSend.numOne = '';
-    newObjectToSend.numTwo = '';
-    operationType = '';
-    let el = $('#entryField')
-    let la = $('#calcAnswer')
-    el.empty()
-    la.empty()
-    $( ".operationType" ).removeAttr('style') 
+    let ti = $(this).val()
+    console.log(ti);
+    if(ti === 'AC'){
+        newObjectToSend.numOne = '';
+        newObjectToSend.numTwo = '';
+        operationType = '';
+        let el = $('#entryField')
+        let la = $('#calcAnswer')
+        el.empty()
+        la.empty()
+        $( ".operationType" ).removeAttr('style')
+    } // end if
+    else if(ti === 'C'){
+        let el = $('#entryField')
+        let la = $('#calcAnswer')
+        la.empty();
+        el.empty();
+        la.append(newObjectToSend.numOne)
+        la.append(' ' + newObjectToSend.operation + ' ');
+        $( '#clearValues').val( 'AC' );
+    }
 } // end clearData function
 
 function clearHistory(){  
@@ -99,7 +112,6 @@ function insertNumber() {
             dotCounter++
         } // end if
     } // end for
-    console.log(dotCounter);
     if(el2 == lastAnswer && equalsButtonLastClick === true){
         el.empty()
         ti.empty()
@@ -107,20 +119,24 @@ function insertNumber() {
         if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
             el.append(nextNum)
             ti.append(nextNum)
+            $( '#clearValues').val( 'C' );
         } // end if
         else if($( this ).data( 'id' ) != '.'){
             el.append(nextNum)
             ti.append(nextNum)
+            $( '#clearValues').val( 'C' );
         } // end if
     }
     else{
         if($( this ).data( 'id' ) === '.' && dotCounter === 0 ){ 
             el.append(nextNum)
             ti.append(nextNum)
+            $( '#clearValues').val( 'C' );
         } // end if
         else if($( this ).data( 'id' ) != '.'){
             el.append(nextNum)
             ti.append(nextNum)
+            $( '#clearValues').val( 'C' );
         } // end if
     }
 } // end insertNumber function
@@ -195,6 +211,7 @@ function setOperation() {
     if (newObjectToSend.numOne === '') {
         newObjectToSend.numOne = el[0].innerText
         el.empty();
+        $( '#clearValues').val( 'C' );
     }
     $( '.operationType').removeAttr('style');
     $( this ).css ('background-color', 'rgb(111, 125, 164)');
@@ -205,10 +222,12 @@ function setOperation() {
         la[0].innerText[la[0].innerText.length-1] === '/'){
             la.empty()
             la.append(newObjectToSend.numOne)
-            la.append(' ' + $( this ).data( 'id' ) + ' ')  
+            la.append(' ' + $( this ).data( 'id' ) + ' ');
+            $( '#clearValues').val( 'C' );  
     }
     else{
         la.append(' ' + $( this ).data( 'id' ) + ' ')
+        $( '#clearValues').val( 'C' );
     }
     
 } // end setOperation

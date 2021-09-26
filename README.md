@@ -90,11 +90,16 @@ Phase 4: SUPER strech Goals
     - create clearHistory function to make ajax DELETE call to server [x]
     - create app.delete funciton on server to clear objects in array [x]
 - allow user to select and run historical calculations
-     - update get past calculations to include a data-id
-     - add a class to each historical calculation for targeting
-     - target the dynamically created element to run 'rerunFunction' function on 'click'
-     - create rerunFunction to make ajax 'GET' call that passes data-id to server
-     - create app.get function that performs calculation and returns result
+     - update get past calculations to include a data-id [x]
+     - add a class to each historical calculation for targeting [x]
+     - update css to change pointer on hover [x]
+     - target the dynamically created element to run 'rerunFunction' function on 'click' [x]
+     - create rerunFunction to make ajax 'GET' call that passes data-id to server using req.query [x]
+     - create app.get function on server that grabs historical calculation, pushes to top of array and returns result [x]
+- create a 'clear' vs. 'clearAll' on calculator
+    - update calculator to start with an "AC" (all clear) button [x]
+    - after operation is slected, set AC to C which will only remove progress of the active number [x]
+    - after "C" (clear) is selected, return back to AC button and run clearData function
 
 
 

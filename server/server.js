@@ -27,19 +27,19 @@ app.post('/calculations', (req, res ) => {
     let el = req.body
     if(el.operation === '+'){
         let la = Number(el.numOne) + Number(el.numTwo)
-        el.answer = Math.round(la*100000000)/100000000
+        el.answer = Math.round(la*100000000000000)/100000000000000
     }
     else if(el.operation === '-'){
         let la = Number(el.numOne) - Number(el.numTwo)
-        el.answer = Math.round(la*100000000)/100000000
+        el.answer = Math.round(la*100000000000000)/100000000000000
     }
     else if(el.operation === '*'){
         let la = Number(el.numOne) * Number(el.numTwo)
-        el.answer = Math.round(la*100000000)/100000000
+        el.answer = Math.round(la*100000000000000)/100000000000000
     }
     else if(el.operation === '/'){
         let la = Number(el.numOne) / Number(el.numTwo)
-        el.answer = Math.round(la*100000000)/100000000
+        el.answer = Math.round(la*100000000000000)/100000000000000
     }
     pastCalculations.unshift(el)
     res.sendStatus( 201 )
