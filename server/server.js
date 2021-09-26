@@ -13,7 +13,7 @@
     let pastCalculations = [];
 
 // SPIN UP SERVER
-    app.listen( port, () => {
+    app.listen( process.env.PORT || port, () => {
         console.log( 'server is up on:', port );
     })
 // ROUTES
