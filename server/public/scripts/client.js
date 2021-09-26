@@ -20,7 +20,7 @@ let lastAnswer = 0;
 let lastCalculation = '';
 
 function clearData(){
-    let ti = $(this).val()
+    let ti = $( '#clearValues').val()
     console.log(ti);
     if(ti === 'AC'){
         newObjectToSend.numOne = '';
@@ -39,7 +39,7 @@ function clearData(){
         el.empty();
         la.append(newObjectToSend.numOne)
         la.append(' ' + newObjectToSend.operation + ' ');
-        $( '#clearValues').val( 'AC' );
+        $( '#clearValues').val( 'AC' )
     }
 } // end clearData function
 
@@ -85,6 +85,7 @@ function getPastCalculations(){
             ${response[0].numTwo} = 
             <b>${response[0].answer}</b>`)
             let el2 = $('#entryField')
+            el2.empty();
             el2.append(response[0].answer)
             lastAnswer = response[0].answer
             lastCalculation = (`${response[0].numOne} ${response[0].operation} ${response[0].numTwo} = ${response[0].answer}`)
@@ -96,6 +97,7 @@ function getPastCalculations(){
 } // end getPastCalculations function
 
 function insertNumber() {
+    console.log('lastCalculation:', lastCalculation);
     let el = $('#entryField')
     let la = $('#lastCalculation')
     let ti = $('#calcAnswer')
@@ -104,8 +106,9 @@ function insertNumber() {
     let el2 = el[0].innerText
     let dotCounter = 0;
     let nextNum = $(this).val();
-    if (la[0].innerText == lastCalculation){
+    if (la[0].innerText === lastCalculation){
         ti.empty();
+        el.empty();
     }
     for (let i = 0; i < el2.length; i++) {
         if(el2[i] === '.') {
@@ -162,12 +165,13 @@ function performCalculation(){
         console.log( 'back from POST', response );
         equalsButtonLastClick = true;
         la.empty();
+        resetObjectToSend();
         getPastCalculations();
+        clearData();  
     }).catch( function ( err ) {
         alert( 'There was a caluation error')
         console.log('Error with caluation:', err );
     })
-    clearData();
     } // end else
 } // end performCalculation funciton
 
@@ -187,6 +191,13 @@ function rerunCalculation(){
     })
 }
 
+function resetObjectToSend(){
+    newObjectToSend.numOne = '';
+    newObjectToSend.operation = '';
+    newObjectToSend.numTwo = '';
+    $( '#clearValues').val( 'AC' )
+    $( ".operationType" ).removeAttr('style')
+}
 function setOperation() {
     let el = $('#entryField')
     let la = $('#calcAnswer')
@@ -231,4 +242,3 @@ function setOperation() {
     }
     
 } // end setOperation
-
