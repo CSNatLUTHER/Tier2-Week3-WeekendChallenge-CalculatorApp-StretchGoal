@@ -100,6 +100,12 @@ Phase 4: SUPER strech Goals
     - update calculator to start with an "AC" (all clear) button [x]
     - after operation is slected, set AC to C which will only remove progress of the active number [x]
     - after "C" (clear) is selected, return back to AC button and run clearData function [x]
+- deploy to Heroku
+     - register with heroku [x]
+     - connect gitHub account [x]
+     - update server.js to accomodate variable port for heroku [x]
+     - create app and select git repository and branch [x]
+     - deploy applicaiton [x]
 
 
 
