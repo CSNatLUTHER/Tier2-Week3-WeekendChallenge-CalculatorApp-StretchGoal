@@ -29,6 +29,7 @@ function clearData(){
         let el = $('#entryField')
         let la = $('#calcAnswer')
         el.empty()
+        el.append ('0')
         la.empty()
         $( ".operationType" ).removeAttr('style')
     } // end if
@@ -37,6 +38,7 @@ function clearData(){
         let la = $('#calcAnswer')
         la.empty();
         el.empty();
+        el.append ('0')
         la.append(newObjectToSend.numOne)
         la.append(' ' + newObjectToSend.operation + ' ');
         $( '#clearValues').val( 'AC' )
@@ -65,6 +67,7 @@ function getPastCalculations(){
     }).then( function( response ) {
         console.log('Back from server with:', response );
         let el = $("#listOfPastCalculations")
+        let la = $('#entryField')
         el.empty()
         let calcCounter = 0;
         if (response.length > 0){
@@ -89,7 +92,10 @@ function getPastCalculations(){
             el2.append(response[0].answer)
             lastAnswer = response[0].answer
             lastCalculation = (`${response[0].numOne} ${response[0].operation} ${response[0].numTwo} = ${response[0].answer}`)
-        }  // end if  
+        }  // end if
+        if(la[0].innerText == '') {
+            la.append('0')
+        }
     }).catch( function( err ){
         alert('There was an error');
         console.log('The error was:', err );
@@ -106,6 +112,9 @@ function insertNumber() {
     let el2 = el[0].innerText
     let dotCounter = 0;
     let nextNum = $(this).val();
+    if( el2 == '0' && nextNum != '.'){
+        el.empty()
+    }
     if (la[0].innerText === lastCalculation){
         ti.empty();
         el.empty();
@@ -222,6 +231,7 @@ function setOperation() {
     if (newObjectToSend.numOne === '') {
         newObjectToSend.numOne = el[0].innerText
         el.empty();
+        el.append('0')
         $( '#clearValues').val( 'C' );
     }
     $( '.operationType').removeAttr('style');
