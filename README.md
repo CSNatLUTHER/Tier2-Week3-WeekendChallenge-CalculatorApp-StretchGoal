@@ -107,6 +107,12 @@ Phase 4: SUPER strech Goals
      - create app and select git repository and branch [x]
      - deploy applicaiton [x]
 
+KNOWN DEFECTS:
+===
+- Doesn't properly handle multiple leading zeros in the formula field (doesn't affect math)
+- Starting a calculation with a '.' before an AC is performed requires you to select '.' twice
+- Can't manage multiple operations in a single formula
+- Some floating point number math problems still present
 
 
 
